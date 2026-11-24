@@ -1,18 +1,58 @@
 name: Build APK
-on:
+
+"on":
   workflow_dispatch:
     inputs:
-      app_id: { description: 'App ID', required: true, type: string }
-      app_code: { description: 'App Code', required: true, type: string }
-      app_name: { description: 'App Name', required: true, type: string }
-      app_url: { description: 'Website URL', required: true, type: string }
-      splash_duration: { description: 'Splash ms', required: false, default: '2000', type: string }
-      splash_color: { description: 'Splash Color', required: false, default: '#0A1A2F', type: string }
-      splash_logo: { description: 'Splash Logo URL', required: false, type: string }
-      app_icon: { description: 'App Icon URL', required: false, type: string }
-      external_links: { description: '1/0', required: false, default: '1', type: string }
-      allow_download: { description: '1/0', required: false, default: '1', type: string }
-      allow_upload: { description: '1/0', required: false, default: '1', type: string }
+      app_id:
+        description: 'App ID'
+        required: true
+        type: string
+      app_code:
+        description: 'App Code'
+        required: true
+        type: string
+      app_name:
+        description: 'App Name'
+        required: true
+        type: string
+      app_url:
+        description: 'Website URL'
+        required: true
+        type: string
+      splash_duration:
+        description: 'Splash ms'
+        required: false
+        default: '2000'
+        type: string
+      splash_color:
+        description: 'Splash Color'
+        required: false
+        default: '#0A1A2F'
+        type: string
+      splash_logo:
+        description: 'Splash Logo URL'
+        required: false
+        type: string
+      app_icon:
+        description: 'App Icon URL'
+        required: false
+        type: string
+      external_links:
+        description: '1/0'
+        required: false
+        default: '1'
+        type: string
+      allow_download:
+        description: '1/0'
+        required: false
+        default: '1'
+        type: string
+      allow_upload:
+        description: '1/0'
+        required: false
+        default: '1'
+        type: string
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +60,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
         uses: actions/setup-java@v4
-        with: { java-version: '17', distribution: 'temurin' }
+        with:
+          java-version: '17'
+          distribution: 'temurin'
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
       - name: Update Config.java from inputs
@@ -42,4 +84,7 @@ jobs:
           ls -lh output/
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
-        with: { name: app-${{ inputs.app_code }}, path: output/*.apk, retention-days: 30 }
+        with:
+          name: app-${{ inputs.app_code }}
+          path: output/*.apk
+          retention-days: 30
