@@ -1,1 +1,0 @@
-IMPORTANT: Rename this folder from 'github-actions' to '.github' when you push to GitHub. GitHub only reads workflows from .github/workflows/. So: github-actions/workflows/build-apk.yml -> .github/workflows/build-apk.yml and github-actions/scripts/ -> .github/scripts/
