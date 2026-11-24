@@ -1,9 +1,9 @@
 <?php
 // EDIT THIS
-define('DB_HOST','localhost');
-define('DB_NAME','webview_builder');
-define('DB_USER','root');
-define('DB_PASS','');
+define('DB_HOST','sultandbard.mysql.db');
+define('DB_NAME','sultandbard');
+define('DB_USER','sultandbard');
+define('DB_PASS','tZZs55CkT3k9n4');
 define('SITE_URL','https://yourbuilder.com'); // no trailing slash
 define('UPLOAD_DIR', __DIR__.'/uploads/');
 
