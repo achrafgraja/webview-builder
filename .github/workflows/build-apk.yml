@@ -60,18 +60,18 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.2'
+      - name: Show Android SDK already installed
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+          ls $ANDROID_HOME
+          ls $ANDROID_HOME/cmdline-tools || true
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Show files
         run: |
@@ -87,6 +87,12 @@ jobs:
       - name: Download assets
         run: python3 .github/scripts/download_assets.py "${{ inputs.splash_logo }}" "${{ inputs.app_icon }}" || echo "No assets"
 
+      - name: Install Gradle
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y gradle
+          gradle --version
+
       - name: Build APK
         run: |
           cd android
@@ -96,6 +102,7 @@ jobs:
         run: |
           mkdir -p output
           APK=$(find android/app/build/outputs/apk -name "*.apk" | head -n 1)
+          echo "Found APK $APK"
           cp "$APK" "output/${{ inputs.app_code }}-${{ inputs.app_name }}.apk"
           ls -lh output/
 
@@ -103,5 +110,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-${{ inputs.app_code }}
-          path: output/app.apk
+          path: output/
           retention-days: 30
