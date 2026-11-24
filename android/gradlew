@@ -1,0 +1,4 @@
+#!/bin/sh
+# Placeholder - Android Studio will generate real gradlew on first build.
+# If building on GitHub and this fails, run once locally in Android Studio: Build > Make Project, then push generated gradlew + gradle/wrapper files.
+exec gradle "$@"

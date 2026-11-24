@@ -1,0 +1,5 @@
+1. Open 'android' folder in Android Studio
+2. Edit Config.java: set API_BASE to your domain + APP_CODE from admin.php
+3. Replace icon: res/mipmap-xxxhdpi/ic_launcher.png with your 512x512 icon
+4. Build > Generate Signed App Bundle / APK
+5. For new apps: just change APP_CODE in Config.java and rebuild - OR use API mode, no rebuild needed if you keep same APK and change code via app? For API mode, APK fetches config by code on splash.

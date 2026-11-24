@@ -1,0 +1,12 @@
+{
+    "app_name": "Naqlatheth",
+    "app_url": "https:\/\/www.naqlatheth.com\/",
+    "splash_duration": 2000,
+    "splash_color": "#0a1a2f",
+    "splash_logo": "uploads\/splash_1795551285_555.jpg",
+    "app_icon": "uploads\/icon_1795551285_141.jpg",
+    "external_links": true,
+    "allow_download": true,
+    "allow_upload": true,
+    "pull_refresh": true
+}
